@@ -55,7 +55,7 @@ export default class ShapeList extends NameMeUIBase {
             (shape) => `
             <li title="keep cursor on to calm" style="position: relative; height: 32vh; display: flex; align-items: center; justify-content: center; flex-direction:column;">
         <div class="name-it" style="color:${shape.getJson().color};">
-          ${shape.getJson().name || "NoName"+shape.getJson()._id.slic(0,2)+" "+shape.getJson().sides+" Side"}
+          ${shape.getJson().name || "NoName "+shape.getJson()?._id.slice(0,2)+shape.getJson()?.sides+" Side"}
         </div>
               ${RenderFactory.renderShape(shape.getJson())}
              
