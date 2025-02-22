@@ -9,18 +9,27 @@ export default class Polygon extends ShapeBase {
     });
   }
 
-  getArea() {
-    // Simplified example (assumes regular polygon with side length 1 for now)
-    const sides = this.getJson().sides;
-    return (sides * Math.pow(1, 2)) / (4 * Math.tan(Math.PI / sides));
-  }
-
   defineSelf(isRegular) {
     super.defineSelf();
 
-    let isRound = Math.random() > 0.84;
-    let roundness = isRound ? 120 : 10;
-    // Determine a random number of sides (between 3 and 12)
+    let pulsePattern;
+    if (this.getJson().movement == "pulsing") {
+      const pulsePatterns = [
+        "continuous",
+        "periodic",
+        "pulseWait",
+        "randomBurst",
+        "breathing",
+        "pulseVertices",
+      ];
+      const selectedPattern =
+        pulsePatterns[Math.floor(Math.random() * pulsePatterns.length)];
+      pulsePattern = selectedPattern;
+    }
+
+    let isRound = Math.random() > 0.87;
+    let roundness = isRound ? Math.floor(Math.random() * 118) + 3 : 10;
+    // Determine a random number of sides (between 3 and roundness)
     const sides = Math.floor(Math.random() * roundness) + 3;
 
     // Decide if it has a hole (25% chance)
@@ -117,6 +126,7 @@ export default class Polygon extends ShapeBase {
       vertices: outerVertices,
       innerVertices: hasHole ? innerVertices : null,
       movement: hasHole ? moveType : this.getJson().movement,
+      pattern: pulsePattern,
     });
 
     return this;

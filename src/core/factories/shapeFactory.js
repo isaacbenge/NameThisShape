@@ -27,7 +27,9 @@ export class ShapeFactory {
     const shape = new ShapeClass().defineSelf(regular);
 
     // Update the shape's JSON with the provided json (merging with defaults)
-    shape.setJson({ ...shape.getJson(), ...json });
+    shape.setJson({...shape.getJson(), ...json });
+  
+   
     return shape;
   }
 

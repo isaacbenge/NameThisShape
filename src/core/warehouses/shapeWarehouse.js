@@ -5,6 +5,6 @@ export class ShapeWarehouse {
   }
 
   addShape(shape) {
-    this.dataStore.addShape(shape.getJson());
+    this.dataStore.addShape(shape);
   }
 }

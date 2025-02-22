@@ -3,7 +3,6 @@ import { NameMeUIBase } from "../bases/nameMeUIBase.js";
 export default class ElementFactory {
   constructor() {
     this._registry = new Map();
-    /// I can store element classes
   }
 
   //Register a custom element class, forcing NameMeUIBase
@@ -17,15 +16,21 @@ export default class ElementFactory {
   }
 
   // Create an instance of a registered element
-  createElement(tagName, options = {}) {
+  createElement(tagName, uiInterface, options = {}) {
+   
     const ElementClass = this._registry.get(tagName);
     if (!ElementClass) {
       throw new Error(`Element ${tagName} not registered`);
     }
-    const element = document.createElement(tagName);
+
+    // Pass uiInterface explicitly to the constructor
+    const element = new ElementClass(uiInterface);
+
+    // Apply attributes from options
     Object.entries(options).forEach(([key, value]) => {
       element.setAttribute(key, value);
     });
+
     return element;
   }
 }

@@ -2,7 +2,7 @@ import idServices from "./idServices.js";
 
 export default class BaseClass {
   constructor() {
-    this.json = { _id: idServices.generateId(), }; // Auto-generate ID
+    this.json = { _id: idServices.generateId(), name:"" }; // Auto-generate ID
   }
 
 
@@ -16,6 +16,7 @@ export default class BaseClass {
     } else {
       throw new Error("setJson requires a valid object");
     }
+
   }
 
   getJson() {

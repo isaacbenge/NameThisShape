@@ -9,7 +9,7 @@ export default class ShapeBase extends BaseClass{
             type: 'unknown',
             name: '',
             createdAt: Date.now(),
-            sizeMod: 2.9,
+            sizeMod: 1.1,
         });
     }
 
@@ -34,8 +34,8 @@ export default class ShapeBase extends BaseClass{
 
     randomColor() {
         const hue = Math.floor(Math.random() * 360); // 0-359
-        const saturation = Math.floor(Math.random() * 30) + 60; // (vibrant)
-        const lightness = Math.floor(Math.random() * 20) + 45; // (not too dark)
+        const saturation = Math.floor(Math.random() * 91) + 10; // (some more vibrant)
+        const lightness = Math.floor(Math.random() * 71) + 20; // (not too dark)
         return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
       }
 
